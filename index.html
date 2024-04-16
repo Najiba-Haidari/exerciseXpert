@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExerciseXpert</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+  </head>
+  <body>
+    <div>
+      <header class="text-center p-4 text-white">
+        <h1>ExerciseXpert</h1>
+        <h2>Your Journey to Better Health!</h2></header>
+    </div>
+
+    <div class="text-left p-4 m-2" id="icon">
+      <svg  xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+      </svg>
+
+    </div>
+
+    <div class=" text-center my-3">
+      
+      <h3>Let's Begin it!</h3>
+      <p>View the Body Parts</p>
+      <button id="view-button" class="btn  p-3 m-4 w-25">Click here!</button>
+
+        <div id="container-bodyparts">
+            
+        </div>
+
+      <!-- <label for="body-parts">Select a Body Part</label>
+      <select name="body-parts" id="body-parts" class="form-select w-50 mx-auto p-3 my-4" aria-label="Default select example">
+        <option selected class="">Select Body Part</option>
+      </select>
+       -->
+
+       <div id="title"></div>
+       <div id="container-exercises">
+            
+       </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./scripts.js"></script>
+  </body>
+</html>
