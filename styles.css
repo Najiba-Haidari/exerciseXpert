@@ -34,6 +34,19 @@ select{
     margin: 40px auto;
     padding: 20px;
 }
+#container-saved{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 75%;
+    margin: 40px auto;
+    padding: 20px;
+}
+#get-saved{
+    margin: 0 auto;
+}
 
 .btn-bodyParts{
     padding: 20px;
@@ -53,4 +66,8 @@ select{
 
 #icon svg:hover{
     fill: red;
+}
+
+.hidden{
+    visibility: hidden;
 }
