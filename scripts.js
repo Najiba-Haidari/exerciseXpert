@@ -67,7 +67,8 @@ async function handleClickButtons(event) {
                 });
             console.log("Body Part Exercise", exercises.data)
             const exercisesData = exercises.data;
-            exerciseContainer.innerHTML = ""
+            exerciseContainer.innerHTML = "";
+            savedContainer.innerHTML = "";
             exercisesData.forEach((exercise) => {
 
                 exerciseTitle.innerHTML = `<h2 class="text-center">${capitalizeFirstLetter(exercise.bodyPart)} exercises are here!</h2>`
@@ -91,12 +92,14 @@ async function handleClickButtons(event) {
                     try {
 
                         console.log(exercise.id)
-                        //     const getAll = await axios.get("https://json-store.p.rapidapi.com/",  
-                        //    { headers: {
-                        //         'X-RapidAPI-Key': 'cee23baa0amshab7b2d353f6de30p134a0ajsnc54ace73156b',
-                        //         'X-RapidAPI-Host': 'json-store.p.rapidapi.com'
-                        //       }}
-                        // )
+                        const getAll = await axios.get("https://json-store.p.rapidapi.com/",
+                            {
+                                headers: {
+                                    'X-RapidAPI-Key': 'cee23baa0amshab7b2d353f6de30p134a0ajsnc54ace73156b',
+                                    'X-RapidAPI-Host': 'json-store.p.rapidapi.com'
+                                }
+                            }
+                        )
                         // console.log(getAll.data)
 
                         const savedData = await axios.put('https://json-store.p.rapidapi.com/', {
@@ -118,7 +121,8 @@ async function handleClickButtons(event) {
                         console.log("Error saving exercise:", error);
                     }
                 });
-            });
+            }
+            );
 
         } catch (error) {
             console.log("error for exercises", error)
@@ -142,7 +146,8 @@ async function getSavedExercises() {
                 }
             }
         )
-        console.log(getAll.data)
+        console.log(getAll.data);
+
         getAll.data.forEach((item) => {
             const exerciseCard = document.createElement("div");
             exerciseCard.classList.add("card");
@@ -150,6 +155,7 @@ async function getSavedExercises() {
             exerciseCard.innerHTML = `
                 <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
+                    <p class="card-text">Body Part: ${item.bodyPart}</p>
                 </div>
             `;
             savedContainer.appendChild(exerciseCard);
