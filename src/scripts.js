@@ -1,3 +1,4 @@
+import { capitalizeFirstLetter, reloadPage } from "./util.js";
 // import axios from 'axios'
 
 const url = "https://exercisedb.p.rapidapi.com/exercises/bodyPartList";
@@ -44,12 +45,7 @@ async function loadBodyParts() {
         console.log(error)
     }
 }
-
 // loadBodyParts();
-
-function capitalizeFirstLetter(word) {
-    return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
-}
 
 bodyPartsContainer.addEventListener("click", handleClickButtons)
 
@@ -111,7 +107,9 @@ async function handleClickButtons(event) {
         const exerciseAlreadySaved = savedExercises.find(savedExercise => savedExercise.name === exerciseName);
 
                         if (exerciseAlreadySaved) {
-                            alert("already saved")
+                            console.log("already saved!")
+                            alert("already saved!")
+                            
                         } else {
                             const savedData = await axios.put('https://json-store.p.rapidapi.com/', {
                                 id: exercise.id,
@@ -127,7 +125,8 @@ async function handleClickButtons(event) {
                                 }
                             });
                             console.log("Exercise saved successfully:", savedData.data);
-                            saveBtn.textContent = "Saved"
+                            saveBtn.textContent = "Saved";
+                            saveBtn.style.backgroundColor = "lightgreen"
                         }
 
                     } catch (error) {
@@ -143,9 +142,7 @@ async function handleClickButtons(event) {
     }
 }
 
-icon.addEventListener("click", () => {
-    window.location.reload()
-})
+icon.addEventListener("click", reloadPage)
 
 getSavedButton.addEventListener("click", getSavedExercises);
 
@@ -159,7 +156,7 @@ async function getSavedExercises() {
                 }
             }
         )
-        console.log(getAll.data);
+        console.log("list of exercises saved:",getAll.data);
 
         getAll.data.forEach((item) => {
             const exerciseCard = document.createElement("div");
@@ -181,15 +178,6 @@ async function getSavedExercises() {
         console.log("error getting saved exercises", error)
     }
 }
-
-// saveBtn.addEventListener("click", handleSaveExercise)
-
-// async function handleSaveExercise(event){
-//     if (event.target.classList.contains("save")){
-//         console.log("save button clicked")
-//     } 
-//     // console.log("not selected")
-// }
 
 
 
