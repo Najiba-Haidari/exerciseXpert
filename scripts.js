@@ -12,12 +12,13 @@ const savedContainer = document.getElementById("container-saved")
 const getSavedButton = document.getElementById("get-saved")
 // const saveBtn = document.getElementById("save-btn")
 // const bodyPartsButton = document.querySelectorAll("button");
+let bodyPartsLoaded = false;
 
 viewButton.addEventListener("click", loadBodyParts);
 // getSavedButton.style.display = "none"
 async function loadBodyParts() {
     try {
-
+        if (!bodyPartsLoaded){
         bodyPartsContainer.innerHTML = "";
         const bodyPartList = await axios.get(url,
             {
@@ -35,6 +36,8 @@ async function loadBodyParts() {
             bodyPartsContainer.appendChild(buttonEl)
             getSavedButton.classList.remove("hidden")
         })
+        bodyPartsLoaded = true
+    }
         viewButton.style.display = 'none';
         savedContainer.innerHTML = ""
     } catch (error) {
@@ -88,35 +91,45 @@ async function handleClickButtons(event) {
 
                 const saveBtn = exerciseCard.querySelector("#save-btn");
 
-                saveBtn.addEventListener("click", async () => {
+                saveBtn.addEventListener("click", async (name) => {
                     try {
 
                         console.log(exercise.id)
                         const getAll = await axios.get("https://json-store.p.rapidapi.com/",
                             {
                                 headers: {
-                                    'X-RapidAPI-Key': 'cee23baa0amshab7b2d353f6de30p134a0ajsnc54ace73156b',
+                                    'X-RapidAPI-Key': 'a3882e0d78msh0ee7afc0a7eb84fp140078jsn97b32d56c79a',
                                     'X-RapidAPI-Host': 'json-store.p.rapidapi.com'
                                 }
                             }
                         )
-                        // console.log(getAll.data)
+                        console.log(getAll.data)
+                        const savedExercises = getAll.data;
+                        const exerciseName = exercise.name;
 
-                        const savedData = await axios.put('https://json-store.p.rapidapi.com/', {
-                            id: exercise.id,
-                            bodyPart: exercise.bodyPart,
-                            name: exercise.name,
-                            target: exercise.target,
-                            gifUrl: exercise.gifUrl
-                        }, {
-                            headers: {
-                                'content-type': 'application/json',
-                                'X-RapidAPI-Key': 'cee23baa0amshab7b2d353f6de30p134a0ajsnc54ace73156b',
-                                'X-RapidAPI-Host': 'json-store.p.rapidapi.com'
-                            }
-                        });
-                        console.log("Exercise saved successfully:", savedData.data);
-                        saveBtn.textContent = "Saved"
+        // Check if the exercise name is already saved
+        const exerciseAlreadySaved = savedExercises.find(savedExercise => savedExercise.name === exerciseName);
+
+                        if (exerciseAlreadySaved) {
+                            alert("already saved")
+                        } else {
+                            const savedData = await axios.put('https://json-store.p.rapidapi.com/', {
+                                id: exercise.id,
+                                bodyPart: exercise.bodyPart,
+                                name: exercise.name,
+                                target: exercise.target,
+                                gifUrl: exercise.gifUrl
+                            }, {
+                                headers: {
+                                    'content-type': 'application/json',
+                                    'X-RapidAPI-Key': 'a3882e0d78msh0ee7afc0a7eb84fp140078jsn97b32d56c79a',
+                                    'X-RapidAPI-Host': 'json-store.p.rapidapi.com'
+                                }
+                            });
+                            console.log("Exercise saved successfully:", savedData.data);
+                            saveBtn.textContent = "Saved"
+                        }
+
                     } catch (error) {
                         console.log("Error saving exercise:", error);
                     }
@@ -141,7 +154,7 @@ async function getSavedExercises() {
         const getAll = await axios.get("https://json-store.p.rapidapi.com/",
             {
                 headers: {
-                    'X-RapidAPI-Key': 'cee23baa0amshab7b2d353f6de30p134a0ajsnc54ace73156b',
+                    'X-RapidAPI-Key': 'a3882e0d78msh0ee7afc0a7eb84fp140078jsn97b32d56c79a',
                     'X-RapidAPI-Host': 'json-store.p.rapidapi.com'
                 }
             }
@@ -155,7 +168,7 @@ async function getSavedExercises() {
             exerciseCard.innerHTML = `
                 <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
-                    <p class="card-text">Body Part: ${item.bodyPart}</p>
+                   
                 </div>
             `;
             savedContainer.appendChild(exerciseCard);
