@@ -16,6 +16,7 @@ exerciseXpert is a fitness application designed to assist users in viewing exerc
 - [User Story](#use-story)
 - [Acceptance Criteria](#acceptance-criteria)
 - [Github Link](#github-link)
+- [Technologies Used](#technologies-used)
 - [APIs Used](#apis-used)
 - [Installation](#installation)
 - [License](#license)
@@ -43,6 +44,11 @@ THEN if the exercise is already saved, I see an alert otherwise I see the button
 WHEN I click to get saved exercises button
 THEN I can view the list of exercises saved
 ```
+## Technologies Used
+
+- Javascript including axios 
+- Boostrap and CSS3
+- HTML5
 
 ## APIs Used
 
