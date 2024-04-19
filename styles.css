@@ -2,10 +2,12 @@
   margin: 0;
   padding: 0;
 }
-/* body{
-    background-image: url(./images/);
+body{
+    background-image: url(./images/pexels-photo-2036998.jpeg);
+    background-repeat: no-repeat;
     background-size: cover;
-} */
+    /* opacity: 0.9; */
+}
 header {
   background-color: rgb(129, 43, 43);
 }
@@ -57,11 +59,13 @@ select {
   border-radius: 5px;
   border: 2px solid transparent;
   background-color: rgb(240, 214, 225);
-  box-shadow: 10px 5px 5px rgb(236, 218, 218);
+  box-shadow: 10px 5px 5px rgb(163, 161, 161);
+  opacity: 0.9;
 }
 
 .btn-bodyParts:hover {
-  background-color: rgb(184, 214, 184);
+  background-color: rgb(146, 41, 46);
+  color: white;
 }
 
 #icon svg:hover {
