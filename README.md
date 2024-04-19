@@ -15,9 +15,9 @@ exerciseXpert is a fitness application designed to assist users in viewing exerc
 
 - [User Story](#use-story)
 - [Acceptance Criteria](#acceptance-criteria)
-- [Github Link](#github-link)
 - [Technologies Used](#technologies-used)
 - [APIs Used](#apis-used)
+- [Github Link](#github-link)
 - [Installation](#installation)
 - [License](#license)
 
